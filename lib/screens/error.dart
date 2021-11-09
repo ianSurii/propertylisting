@@ -16,7 +16,7 @@ class _ErrorPageState extends State<ErrorPage> {
       body: Container(
         color: Colors.greenAccent,
         child: Padding(
-          padding: const EdgeInsets.only(left: 300.0),
+          padding: EdgeInsets.only(left: size.width * 0.2),
           child: Container(
             width: size.width,
             height: size.height,

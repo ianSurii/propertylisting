@@ -4,6 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:propertylisting/models/property.dart';
+import 'package:propertylisting/responsive/responsive.dart';
 import 'package:propertylisting/screens/error.dart';
 import 'package:propertylisting/screens/menu.dart';
 import 'package:propertylisting/sliverlist.dart';
@@ -31,12 +32,32 @@ class _HomeState extends State<Home> {
               sliver: SliverAppBar(
                 pinned: true,
                 //floating: true,
-                title: Menu(),
+                title: Responsive.isDesktop(context)
+                    ? Menu(isDesktop: true)
+                    : SizedBox(),
                 stretch: true,
                 centerTitle: true,
                 leading: Icon(Icons.house_outlined),
                 backgroundColor: Colors.white,
                 expandedHeight: 300.0,
+                actions: [
+                  Responsive.isDesktop(context)
+                      ? SizedBox()
+                      : IconButton(
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return Center(
+                                  child: Menu(
+                                    isDesktop: false,
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          icon: Icon(Icons.menu))
+                ],
                 flexibleSpace: FlexibleSpaceBar(
                   centerTitle: true,
                   background: ClipRRect(
